@@ -12,7 +12,7 @@ const postSlice = createSlice({
     name: "post",
     initialState,
     reducers: {
-        updatePost: (state, action: PayloadAction<any>) => {
+        addPost: (state, action: PayloadAction<any>) => {
             state = action.payload
             // getting the data from the component in the frontend
             const { id, title, description } = action.payload
@@ -20,11 +20,12 @@ const postSlice = createSlice({
         },
         deletePost: (state, action: PayloadAction<any>) => {
             const postid = action.payload
-            state = state.filter((post: any) => post.id !== postid)
+            // You need to return the state
+            return state = state.filter((post: any) => post.id !== postid)
         }
 
     }
 })
 
-export const { updatePost, deletePost } = postSlice.actions
+export const { addPost, deletePost } = postSlice.actions
 export default postSlice.reducer
