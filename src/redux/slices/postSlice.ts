@@ -12,8 +12,20 @@ const postSlice = createSlice({
     name: "post",
     initialState,
     reducers: {
+
+        addPosts: (state, action: PayloadAction<any>) => {
+            // Fetching all posts and updating the state
+            state.push(...action.payload);
+        },
+        updatePost: (state, action: PayloadAction<any>) => {
+            const { id, title, description } = action.payload;
+            const postIndex = state.findIndex((post: any) => post.id === id);
+            if (postIndex !== -1) {
+                state[postIndex].title = title;
+                state[postIndex].description = description;
+            }
+        },
         addPost: (state, action: PayloadAction<any>) => {
-            state = action.payload
             // getting the data from the component in the frontend
             const { id, title, description } = action.payload
             state.push({ id, title, description })

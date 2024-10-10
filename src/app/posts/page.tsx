@@ -15,17 +15,35 @@ export default function Posts() {
     // fetch posts from state
     const posts = useSelector((state: any) => state.post);
 
-    console.log(posts)
-
     const handleRemove = (id: any) => {
         dispatch(deletePost(id));
         console.log(id)
         console.log(posts)
     }
 
+    const handleAddPost = (e: any) => {
+        e.preventDefault();
+        // these are from the useState();
+        if (!title || !description) return;
+
+        const newPost = {
+            id: Date.now(),
+            title: title,
+            description: description,
+        }
+
+        if (newPost) {
+            dispatch(addPost(newPost));
+            setTitle("");
+            setDescription("");
+        } else {
+            throw new Error("Post not added, try again");
+        }
+    }
+
     return (
         <div className={styles.container}>
-            <form className={styles.form} onSubmit={() => console.log('Here')}>
+            <form className={styles.form} onSubmit={handleAddPost}>
                 <input
                     type="text"
                     className={styles.input}

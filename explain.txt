@@ -1,0 +1,47 @@
+COmponents of redux toolkit
+
+// Store
+
+This is where you create the place where you store all of yopur state
+
+// Slicers
+
+This is basically the interface that explains each type of state that you want.
+i.e some state for wallets, some state for users, some state for weather data
+
+interface WalletState  {
+
+id: int,
+name: string
+}
+
+interface UserState {
+
+name: string,
+age: int
+
+}
+
+// Actions
+
+This is where you define the actions. Becareful, is not the action itself, just its identifiers
+THe action itself is happening later in the reducers
+
+const increase = {type: "INCREASE", payload: 1}
+const decrease = {type: "DECREASE", payload: 1}
+
+==> always capital name in the type and always string
+
+// Reducers
+This is where we define how the state is changed and affected based on the actions.
+
+Redux Toolkit
+
+IMportant: We have to create a ReduxProvider, and wrap all the children components by wrapping the {children} inside Layout.tsx file in APp folder
+
+IMPORTANT: We use useSelector hook to access the state in our React component file, then create our Handler functions that get the data and execute useDispatch() to trigger the reducers functionality.
+
+Then we pass those handlers in the onClick actions of react components.
+
+Remember to use use client whenever needed. Basically every router you create (aka the folders within the app directory) will have a page.tsx file, in there you put on top "use client" so you can use the redux stuff.
+
